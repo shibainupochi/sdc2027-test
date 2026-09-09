@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem;
+  background-color: #fce8ed;
+  color: #172a46;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-align: center;
+}
+
+main {
+  width: 100%;
+  max-width: 75rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+p {
+  margin: 1.25rem 0 0;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
