@@ -3,15 +3,35 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sakura Dragon Cup 2027 website development test.">
-    <title>Sakura Dragon Cup 2027</title>
+    <meta name="theme-color" content="#f4fafb">
+    <meta name="description" content="Sakura Dragon Cup. More details coming in late October.">
+    <title>Sakura Dragon Cup</title>
+    <link rel="preload" href="assets/dragon.png" as="image">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <main>
-      <h1>Sakura Dragon Cup 2027</h1>
-      <p>Website Development Test</p>
-      <p>April 11, 2027 / Osaka, Japan</p>
+    <main class="teaser">
+      <div class="scenery" aria-hidden="true">
+        <span class="orbit orbit-one"></span>
+        <span class="orbit orbit-two"></span>
+        <span class="bubble bubble-one"></span>
+        <span class="bubble bubble-two"></span>
+        <span class="bubble bubble-three"></span>
+        <span class="petal petal-one"></span>
+        <span class="petal petal-two"></span>
+        <span class="petal petal-three"></span>
+      </div>
+      <div class="composition">
+        <div class="copy">
+          <span class="blossom" aria-hidden="true">✳</span>
+          <h1>Sakura<br>Dragon Cup</h1>
+          <p>More details coming in late October.</p>
+          <span class="accent" aria-hidden="true"></span>
+        </div>
+        <div class="dragon-entrance">
+          <img class="dragon" src="assets/dragon.png" width="1024" height="1024" alt="A friendly light-blue dragon holding a Japanese flag" fetchpriority="high">
+        </div>
+      </div>
     </main>
   </body>
 </html>
