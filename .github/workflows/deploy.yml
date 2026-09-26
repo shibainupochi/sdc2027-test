@@ -1,0 +1,67 @@
+name: Deploy to Sakura Internet
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sakura-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SAKURA_HOST: shibainupochi.sakura.ne.jp
+      SAKURA_USER: shibainupochi
+      DEPLOY_PATH: /home/shibainupochi/www/sdc2027-teaser/
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Configure SSH
+        env:
+          SAKURA_SSH_KEY: ${{ secrets.SAKURA_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$SAKURA_SSH_KEY"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SAKURA_SSH_KEY" > ~/.ssh/sakura_key
+          chmod 600 ~/.ssh/sakura_key
+          ssh-keyscan -T 15 -H "$SAKURA_HOST" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          cat > ~/.ssh/config <<EOF
+          Host sakura-deploy
+            HostName $SAKURA_HOST
+            User $SAKURA_USER
+            IdentityFile ~/.ssh/sakura_key
+            IdentitiesOnly yes
+            BatchMode yes
+            StrictHostKeyChecking yes
+            ConnectTimeout 20
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Sync website
+        run: |
+          set -euo pipefail
+          ssh sakura-deploy "mkdir -p '$DEPLOY_PATH'"
+          rsync -az --delete --delay-updates --chmod=D755,F644 \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='README.md' \
+            -e ssh \
+            ./ "sakura-deploy:$DEPLOY_PATH"
+
+      - name: Remove SSH credentials
+        if: always()
+        run: rm -f ~/.ssh/sakura_key ~/.ssh/config ~/.ssh/known_hosts
