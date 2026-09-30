@@ -9,6 +9,14 @@
 * { box-sizing: border-box; }
 body { margin: 0; }
 
+.site-choices { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+.site-choice { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; padding: 14px 18px; border: 1px solid #173c4b; border-radius: 5px; background: #173c4b; color: white; font: 600 12px/1.5 "Segoe UI", sans-serif; text-decoration: none; letter-spacing: .025em; }
+.site-choice:hover { background: #285666; }
+.site-choice:focus-visible { outline: 3px solid #b34d70; outline-offset: 4px; }
+.site-choice.pending { flex-direction: column; gap: 2px; background: transparent; border-color: #a5bbc2; color: #56727c; }
+.site-choice small { font-size: 10px; font-weight: 400; }
+@media (max-width: 700px) { .site-choices { flex-direction: column; max-width: 360px; margin-inline: auto; } }
+
 .teaser {
   position: relative;
   isolation: isolate;
