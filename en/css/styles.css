@@ -9,3 +9,90 @@
 @media(min-width:761px){.hero-content{justify-content:flex-start;padding-top:32px}.hero:after{background:linear-gradient(145deg,#061424cc,transparent 55%)}.hero h1{font-size:clamp(38px,4vw,58px)}.race-visual img{height:auto;aspect-ratio:1.7;object-position:center 48%}}
 @media(max-width:760px){.hero{height:auto}.hero>img{position:relative;height:330px;object-position:51% 62%;z-index:0}.hero:after{display:none}.hero-content{height:auto;padding-top:22px;padding-bottom:26px}.hero h1{font-size:clamp(32px,7.8vw,48px)}.hero p{margin:14px 0 18px}.race-visual img{height:290px;object-position:38% 70%}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* October 2026 revision: scoped to the requested sections. */
+.updates { background: #fff; border-bottom: 1px solid var(--line); }
+.updates-inner { display: grid; grid-template-columns: 230px 1fr; gap: 36px; padding-block: 34px; }
+.updates h2 { font-size: 22px; letter-spacing: .035em; margin: 0; padding-left: 16px; border-left: 4px solid var(--brand-pink); }
+.updates ul { display: grid; gap: 0; }
+.updates li { display: grid; grid-template-columns: 105px 1fr; gap: 20px; padding: 15px 0; font-size: 16px; }
+.updates li + li { border-top: 1px solid var(--line); margin: 0; }
+.updates time { font-size: 13px; margin: 0; padding-top: 3px; }
+.updates li a { text-underline-offset: 4px; }
+.updates li span, .updates li a { overflow-wrap: anywhere; font-weight: 650; }
+.video-cta { margin-top: 28px; }
+.video-button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; max-width: 100%; min-height: 52px; padding: 14px 20px; background: transparent; border: 1px solid #8091a2; border-radius: 4px; color: inherit; font-size: 12px; font-weight: 750; line-height: 1.6; text-align: left; }
+.video-button:disabled { opacity: 1; cursor: default; }
+.video-status { font-size: 11px; margin-top: 7px; color: var(--muted); }
+.video-icon-placeholder { font-size: 10px; border: 1px dashed currentColor; padding: 3px; }
+.osaka-evenings { max-width: 330px; font-size: 16px; }
+.osaka .video-cta { max-width: 440px; }
+.osaka .video-button { background: #10243ee8; border-color: #ffffff80; }
+.osaka .video-status { color: #fff; }
+.weekend p.weekend-caption { margin-top: 10px; font-size: 13px; font-weight: 400; }
+.weekend-caption strong { color: #9b3c5b; }
+.hotel { border: 0; padding-top: 0; }
+.hotel h2 { font-size: clamp(28px,3vw,38px); margin-bottom: 18px; }
+.hotel-copy > p:not(.eyebrow) { font-size: 14px; }
+.hotel-rate { margin-top: 24px; padding-top: 20px; border-top: 1px solid #cad7e0; }
+.hotel-rate .hotel-price { font-size: clamp(35px,4vw,48px); font-weight: 800; letter-spacing: -.04em; line-height: 1.2; margin-bottom: 16px; }
+.hotel-price span { display: block; font-size: 13px; letter-spacing: 0; margin-bottom: 5px; }
+.hotel-price small { font-size: 15px; letter-spacing: 0; font-weight: 500; white-space: nowrap; }
+.hotel-rate > p:not(.hotel-price) { font-size: 14px; }
+.hotel-rate .hotel-dates { color: var(--muted); margin-top: 7px; }
+.entry-layout { display: block; }
+.fees { grid-template-columns: 1.35fr 1fr; align-items: center; max-width: 850px; margin: 0 auto 30px; }
+.fees article { border: 1px solid #cbd5df; background: #eef1f4; color: #526072; padding: 25px; }
+.fees .price { font-size: 30px; }
+.fees h3 { font-size: 18px; }
+.fees[data-entry-phase="early"] .fee-early, .fees[data-entry-phase="regular"] .fee-regular { padding: 32px; background: #fff; color: var(--navy); border: 2px solid var(--brand-pink); box-shadow: 0 8px 26px #aa426214; }
+.fees[data-entry-phase="early"] .fee-early .price, .fees[data-entry-phase="regular"] .fee-regular .price { font-size: clamp(44px,5vw,60px); }
+.fees .saving { display: inline-block; background: var(--navy); color: white; font-size: 12px; font-weight: 800; padding: 5px 12px; margin-bottom: 18px; border-radius: 3px; }
+/* Change only data-entry-phase to regular after the early-entry period. */
+.fees[data-entry-phase="regular"] { grid-template-columns: 1fr 1.35fr; }
+.fees[data-entry-phase="regular"] .saving { display: none; }
+.entry-actions { max-width: 620px; margin-inline: auto; }
+.entry-actions .video-cta { margin: 8px 0 24px; }
+.entry-actions .video-button { width: 100%; }
+.entry-actions > p.status { font-size: 12px; margin: 9px 0 20px; }
+.footer-brand { background: transparent; padding: 8px 0; }
+.social-links { display: flex; align-items: center; gap: 12px; }
+.social-links a, .social-links button { display: inline-flex; justify-content: center; align-items: center; width: 48px; height: 48px; padding: 10px; border: 0; background: transparent; color: inherit; }
+.social-links button:disabled { opacity: 1; }
+.social-placeholder { font-size: 8px; border: 1px dashed currentColor; padding: 4px 2px; }
+.social-links img { width: 28px; height: 28px; object-fit: contain; }
+.instagram img { width: 22px; height: 22px; object-fit: contain; }
+.video-button img { width: 30px; height: 22px; object-fit: contain; flex-shrink: 0; }
+.footer-links { align-items: center; }
+.header nav .mobile-only { display: none; }
+.contact-page { max-width: 850px; }
+.contact-page h1 { font-size: clamp(36px,5vw,52px); margin-bottom: 20px; }
+.contact-page > p { max-width: 680px; }
+.contact-notice { padding: 18px; margin: 24px 0; background: var(--pale); border-left: 3px solid var(--brand-pink); font-size: 14px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-block: 32px; }
+.form-grid label { display: block; font-size: 14px; font-weight: 700; }
+.form-grid label > span, .form-grid small { font-size: 12px; font-weight: 400; color: var(--muted); }
+.full-width { grid-column: 1 / -1; }
+.form-grid input, .form-grid textarea, .form-grid select { display: block; width: 100%; min-height: 48px; padding: 12px; margin-top: 8px; border: 1px solid #8193a5; border-radius: 4px; background: #fff; color: var(--navy); font: inherit; font-weight: 400; font-size: 16px; }
+.form-grid textarea { resize: vertical; }
+#contact-form > button { max-width: 100%; background: #e2e7ec; color: #536579; line-height: 1.6; }
+@media(max-width:760px) {
+  .header nav .desktop-only { display: none; }
+  .header nav .mobile-only { display: flex; }
+  .updates-inner { grid-template-columns: 1fr; gap: 14px; padding-block: 30px; }
+  .updates h2 { font-size: 21px; }
+  .updates li { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+  .updates li + li { margin: 0; }
+  .updates time { padding: 0; }
+  .video-button { width: 100%; padding: 14px; font-size: 11px; gap: 12px; }
+  .osaka-evenings { max-width: 270px; font-size: 14px; }
+  .osaka .video-cta { margin-top: 20px; }
+  .weekend p.weekend-caption { font-size: 12px; margin-top: 7px; }
+  .fees, .fees[data-entry-phase="regular"] { grid-template-columns: 1fr; gap: 14px; }
+  .fees article { padding: 22px; }
+  .fees[data-entry-phase="early"] .fee-early, .fees[data-entry-phase="regular"] .fee-regular { padding: 26px; }
+  .fees .price { font-size: 30px; }
+  .fees strong { font-size: 14px; }
+  .fees[data-entry-phase="regular"] .fee-regular { grid-row: 1; }
+  .form-grid { grid-template-columns: 1fr; gap: 22px; }
+}

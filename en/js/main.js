@@ -39,17 +39,17 @@ function enableLink(id, url, statusId, status) {
   link.classList.remove('disabled');
   document.getElementById(statusId).textContent = status;
 }
-if (/^https:\/\//.test(ENTRY_URL)) {
+if (document.querySelector('#entry-link') && /^https:\/\//.test(ENTRY_URL)) {
   enableLink('entry-link', ENTRY_URL, 'entry-status', 'Continue to the external entry form.');
 }
-if (BULLETIN_READY) {
+if (document.querySelector('#bulletin-link') && BULLETIN_READY) {
   enableLink('bulletin-link', BULLETIN_URL, 'bulletin-status', 'Read Bulletin 01 for the official entry conditions.');
   document.querySelector('#bulletin-link').setAttribute('download', 'SDC2027_Bulletin01.pdf');
 }
 
 const latest = [...updates].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
 const list = document.querySelector('#updates-list');
-for (const update of latest) {
+for (const update of list ? latest : []) {
   const item = document.createElement('li');
   const time = document.createElement('time');
   time.dateTime = update.date;
@@ -60,7 +60,8 @@ for (const update of latest) {
   item.append(time, title);
   list.append(item);
 }
-document.querySelector('.updates').hidden = latest.length === 0;
+const updatesSection = document.querySelector('.updates');
+if (updatesSection) updatesSection.hidden = latest.length === 0;
 
 const help = document.querySelector('#quick-help');
 const launcher = document.querySelector('.help-launcher');

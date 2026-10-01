@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10243e">
+  <meta name="description" content="Contact the Sakura Dragon Cup team. Contact form preview; sending is not available yet.">
+  <title>Contact | Sakura Dragon Cup 2027</title>
+  <link rel="canonical" href="https://sakuradragoncup.jp/en/contact/">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script type="module" src="../js/main.js"></script>
+  <script defer src="form.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="../" aria-label="Sakura Dragon Cup English home"><img src="../../assets/brand/sakura_dragon_logo.webp" alt="Sakura Dragon Cup" width="190" height="64"></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Open menu" hidden><span></span><span></span><span></span></button>
+      <nav id="navigation" aria-label="Main navigation">
+        <a href="../#why">WHY SDC</a><a href="../#categories">CATEGORIES</a><a href="../#weekend">WEEKEND</a><a href="../#support">TEAM SUPPORT</a><a class="button small" href="../#entry">ENTRY <span aria-hidden="true">↗</span></a>
+        <a class="instagram desktop-only" href="https://www.instagram.com/sakuradragoncup/" aria-label="Instagram"><img src="../../assets/social/instagram-black.svg" alt="" width="22" height="22"></a>
+        <a class="mobile-only" href="./">Contact</a><div class="mobile-only"><div class="social-links" aria-label="Follow us on social media"><a href="https://www.instagram.com/sakuradragoncup/" aria-label="Instagram" title="Instagram"><img src="../../assets/social/instagram-black.svg" alt="" width="28" height="28"></a><button type="button" disabled aria-label="Facebook (coming soon)" title="Facebook — coming soon"><img src="../../assets/social/facebook.png" alt="" width="28" height="28"></button><button type="button" disabled aria-label="YouTube (coming soon)" title="YouTube — coming soon"><img src="../../assets/social/youtube.png" alt="" width="28" height="28"></button></div></div>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="section container contact-page">
+    <p class="eyebrow">SAKURA DRAGON CUP 2027</p><h1>Contact</h1>
+    <p>Choose how you would like us to reply. Our team will respond manually through your preferred service.</p>
+    <p class="contact-notice" id="form-status">This form is a preview. Sending is not available yet, and your information will not be submitted.</p>
+    <form id="contact-form" aria-describedby="form-status">
+      <div class="form-grid">
+        <label>Name <span>(required)</span><input name="name" autocomplete="name" required maxlength="150"></label>
+        <label>Team / Organization <span>(required)</span><input name="organization" autocomplete="organization" required maxlength="200"></label>
+        <label>Country / Region <span>(required)</span><input name="country" autocomplete="country-name" required maxlength="100"></label>
+        <label>Subject <span>(required)</span><input name="subject" required maxlength="200"></label>
+        <label class="full-width">Message <span>(required)</span><textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+        <label class="full-width">Preferred reply method <span>(required)</span><select name="reply-method" id="reply-method" required><option value="email">Email</option><option value="line">LINE</option><option value="whatsapp">WhatsApp</option><option value="messenger">Facebook Messenger</option><option value="other">Other</option></select></label>
+        <label class="full-width" id="email-field">Email address <span>(required for Email replies)</span><input type="email" name="email" id="reply-email" autocomplete="email" required maxlength="254"></label>
+        <label class="full-width" id="reply-field">Reply contact / ID / phone number <span>(required for other reply methods)</span><input name="reply-contact" id="reply-contact" aria-describedby="reply-hint" maxlength="250"><small id="reply-hint">For non-email replies, provide your contact ID, profile URL, or phone number with country code.</small></label>
+      </div>
+      <button class="button" type="submit" disabled aria-describedby="form-status">SEND MESSAGE — NOT AVAILABLE YET</button>
+    </form>
+  </main>
+  <footer><div class="container footer-top"><a class="footer-brand" href="../"><img src="../../assets/brand/sakura_dragon_logo.webp" alt="Sakura Dragon Cup" width="190" height="64" loading="lazy"></a><div class="footer-links"><a href="./">Contact</a><div class="social-links" aria-label="Follow us on social media"><a href="https://www.instagram.com/sakuradragoncup/" aria-label="Instagram" title="Instagram"><img src="../../assets/social/instagram-white.svg" alt="" width="28" height="28"></a><button type="button" disabled aria-label="Facebook (coming soon)" title="Facebook — coming soon"><img src="../../assets/social/facebook.png" alt="" width="28" height="28"></button><button type="button" disabled aria-label="YouTube (coming soon)" title="YouTube — coming soon"><img src="../../assets/social/youtube.png" alt="" width="28" height="28"></button></div></div></div><div class="container footer-bottom"><div><p>© 2027 Sakura Dragon Cup</p></div><a href="../../">Back to Site Home ↗</a></div></footer>
+  <button class="help-launcher" type="button" aria-haspopup="dialog" aria-controls="quick-help" hidden><span aria-hidden="true">?</span> QUICK HELP <small>FAQ</small></button>
+  <dialog id="quick-help" aria-labelledby="help-title"><div class="help-header"><div><p class="eyebrow">FOR OVERSEAS TEAMS</p><h2 id="help-title">Quick Help</h2></div><button class="help-close" type="button" aria-label="Close Quick Help" autofocus>×</button></div><p class="help-intro">Choose a topic to find your answer.</p><div id="help-content"></div><p class="help-contact">Still have a question? <a href="./">Contact us</a></p></dialog>
+</body>
+</html>
