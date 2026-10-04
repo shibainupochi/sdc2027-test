@@ -6,7 +6,7 @@ Vanilla HTML / CSS / JavaScript site, implemented against `IMPLEMENTATION_SPEC_V
 
 - `/`: existing Teaser artwork and animation retained; site selection added.
 - `/en/`: overseas-team English site, with its own CSS and JavaScript.
-- `/ja/`: reserved only. The Japanese CTA remains disabled until the Japanese site is ready.
+- `/ja/`: domestic Japanese site based on the approved V14 reference; `/ja/news.html` is the news listing. The root Japanese CTA opens this site.
 
 ## Content and release controls
 
