@@ -104,7 +104,7 @@ export const quickHelpData = [
       },
       {
         "question": "Is the official hotel required?",
-        "answer": "Yes."
+        "answer": "We recommend staying at the official hotel. You may also arrange your own accommodation."
       },
       {
         "question": "How do we book?",
