@@ -1,2 +1,7 @@
 .implementation/
 node_modules/
+*.sqlite
+*.sqlite-*
+entries*.csv
+entry-config.php
+private-sdc-entry/

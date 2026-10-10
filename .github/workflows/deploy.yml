@@ -62,6 +62,13 @@ jobs:
             --exclude='.gitignore' \
             --exclude='.implementation/' \
             --exclude='node_modules/' \
+            --exclude='tools/' \
+            --exclude='tests/' \
+            --exclude='ENTRY_SETUP.md' \
+            --exclude='*.sqlite*' \
+            --exclude='entries*.csv' \
+            --exclude='entry-config.php' \
+            --exclude='private-sdc-entry/' \
             -e ssh \
             ./ "sakura-deploy:$DEPLOY_PATH"
 

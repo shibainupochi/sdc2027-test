@@ -39,8 +39,8 @@ function enableLink(id, url, statusId, status) {
   link.classList.remove('disabled');
   document.getElementById(statusId).textContent = status;
 }
-if (document.querySelector('#entry-link') && /^https:\/\//.test(ENTRY_URL)) {
-  enableLink('entry-link', ENTRY_URL, 'entry-status', 'Continue to the external entry form.');
+if (document.querySelector('#entry-link') && (/^https:\/\//.test(ENTRY_URL) || ENTRY_URL === './entry/')) {
+  enableLink('entry-link', ENTRY_URL, 'entry-status', 'Continue to the entry form.');
 }
 if (document.querySelector('#bulletin-link') && BULLETIN_READY) {
   enableLink('bulletin-link', BULLETIN_URL, 'bulletin-status', 'Read Bulletin 01 for the official entry conditions.');
