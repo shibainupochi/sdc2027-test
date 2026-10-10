@@ -23,6 +23,9 @@
 .video-cta { margin-top: 28px; }
 .video-button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; max-width: 100%; min-height: 52px; padding: 14px 20px; background: transparent; border: 1px solid #8091a2; border-radius: 4px; color: inherit; font-size: 12px; font-weight: 750; line-height: 1.6; text-align: left; }
 .video-button:disabled { opacity: 1; cursor: default; }
+a.video-button { text-decoration: none; }
+a.video-button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.entry-payment-note { max-width: 850px; margin: 0 auto 30px; font-size: 14px; line-height: 1.85; color: var(--navy); }
 .video-status { font-size: 11px; margin-top: 7px; color: var(--muted); }
 .video-icon-placeholder { font-size: 10px; border: 1px dashed currentColor; padding: 3px; }
 .osaka-evenings { max-width: 330px; font-size: 16px; }

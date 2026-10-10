@@ -4,11 +4,11 @@ export const quickHelpData = [
     "items": [
       {
         "question": "How much is the entry fee?",
-        "answer": "Early Entry: ¥80,000 per team / per category. Payment deadline: January 31, 2027. Regular Entry: ¥100,000 per team / per category. Payment deadline: February 28, 2027."
+        "answer": "Early Entry is ¥80,000 per team / per category for entry forms submitted by January 31, 2027. Regular Entry is ¥100,000 per team / per category for entry forms submitted from February 1 to February 28, 2027. Your fee is determined by your form submission date, not your payment date."
       },
       {
-        "question": "How do we pay?",
-        "answer": "Payment is made via Wise after the organizing committee reviews your entry."
+        "question": "When do we need to pay?",
+        "answer": "Please pay through Wise by the due date shown on your invoice."
       },
       {
         "question": "When is our entry confirmed?",
@@ -17,6 +17,14 @@ export const quickHelpData = [
       {
         "question": "Do we need a roster when we apply?",
         "answer": "No. An initial athlete roster is not required."
+      },
+      {
+        "question": "How do we enter more than one category?",
+        "answer": "Please submit a separate entry form for each category."
+      },
+      {
+        "question": "Is the entry fee refundable?",
+        "answer": "Entry fees are non-refundable in principle. If unavoidable circumstances arise, please contact us. We will consider your situation flexibly."
       }
     ]
   },
@@ -69,8 +77,8 @@ export const quickHelpData = [
         "answer": "Yes."
       },
       {
-        "question": "When is the final roster due?",
-        "answer": "The final roster schedule and submission details will be announced in Bulletin 02."
+        "question": "When is the athlete roster due?",
+        "answer": "Roster submission is planned for around March 2027. We will contact you beforehand with the schedule and submission details. You do not need to register your athletes when submitting the initial entry form."
       }
     ]
   },
@@ -107,8 +115,12 @@ export const quickHelpData = [
         "answer": "We recommend staying at the official hotel. You may also arrange your own accommodation."
       },
       {
-        "question": "How do we book?",
-        "answer": "Official-hotel booking is arranged through JTB."
+        "question": "Do we need to decide about the official hotel when we apply?",
+        "answer": "You can select Yes, No or Undecided on the entry form. If you select Undecided, you can let us know later."
+      },
+      {
+        "question": "How do we book the official hotel?",
+        "answer": "After your entry is confirmed, we will introduce you to a JTB representative to arrange your official-hotel booking."
       },
       {
         "question": "Can we pay in our home currency?",

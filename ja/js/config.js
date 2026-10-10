@@ -1,2 +1,2 @@
 // Add approved HTTPS video URLs here to enable the corresponding CTAs.
-export const VIDEO_URLS = Object.freeze({ entryGuide: '', youtube: '' });
+export const VIDEO_URLS = Object.freeze({ entryGuide: '', youtube: 'https://www.youtube.com/@SakuraDragonCup-osaka' });
