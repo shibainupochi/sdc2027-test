@@ -126,3 +126,5 @@ p { margin: 30px 0 0; font-size: clamp(13px, 1.2vw, 16px); line-height: 1.7; let
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; }
 }
+
+.contact-link{display:inline-flex;align-items:center;gap:9px;min-height:44px;margin-top:18px;color:#173c4b;font-size:12px;font-weight:600;text-decoration:none}.contact-link:hover{text-decoration:underline}.contact-link:focus-visible{outline:3px solid #b34d70;outline-offset:4px}

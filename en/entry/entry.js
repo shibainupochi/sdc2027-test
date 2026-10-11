@@ -47,7 +47,7 @@ function showReceipt(saved) {
   $('receipt-time').textContent = saved.submitted+' · Japan Standard Time';
   $('receipt-fee').textContent = `Entry fee: ¥${saved.fee.toLocaleString('en-US')} per team / per category. Please pay by the due date on your Wise invoice. Payment has not been confirmed by this receipt.`;
   details($('receipt-details'),saved.application);
-  $('inquiry').href = '../contact/?subject=entry-status&receipt='+encodeURIComponent(saved.receipt);
+  $('inquiry').href = '../../contact/?subject=entry-status&receipt='+encodeURIComponent(saved.receipt);
   $('status').textContent = 'Your application has been saved. This is an application receipt; your race entry is confirmed only after payment is received.';
   $('receipt').focus(); $('receipt').scrollIntoView({block:'start'});
 }

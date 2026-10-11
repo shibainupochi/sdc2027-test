@@ -8,11 +8,11 @@ const ext=path.join(path.dirname(php),'ext');
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'sdc-entry-http-'));
 const web=path.join(temp,'web'),privateDir=path.join(temp,'private'),configFile=path.join(privateDir,'config.php');
 fs.mkdirSync(web);fs.mkdirSync(privateDir);fs.mkdirSync(path.join(privateDir,'sessions'));
-for(const name of ['en','ja','assets'])fs.cpSync(path.join(root,name),path.join(web,name),{recursive:true});
+for(const name of ['en','ja','assets','contact'])fs.cpSync(path.join(root,name),path.join(web,name),{recursive:true});
 fs.cpSync(path.join(root,'tools'),path.join(web,'tools'),{recursive:true});
 const q=value=>"'"+value.replaceAll('\\','/').replaceAll("'","\\'")+"'";
 function config(time='2027-01-31 23:59:59',enabled=true,storage=privateDir){
- fs.writeFileSync(configFile,`<?php return ['enabled'=>${enabled?'true':'false'},'storage_dir'=>${q(storage)},'notification_sender'=>'','test_time'=>${q(time)}];`);
+ fs.writeFileSync(configFile,`<?php return ['enabled'=>${enabled?'true':'false'},'storage_dir'=>${q(storage)},'notification_sender'=>'local-test@example.invalid','test_time'=>${q(time)}];`);
 }
 config();
 // Only this temporary deployment fixture has an injected clock. Production source has no test clock switch.
@@ -61,7 +61,7 @@ const body={category:'open',team:'Synthetic Team',country:'Japan',representative
     await page.goto(base+route);await page.evaluate(()=>Promise.all([...document.images].map(i=>{i.loading='eager';return i.decode().catch(()=>{});})));
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route+' '+width);
     if(route==='/en/entry/'){await page.waitForFunction(()=>!document.getElementById('review-button').disabled);}
-    if(route.startsWith('/en/contact/')){assert.equal(await page.locator('#subject').inputValue(),'Entry Status Inquiry');assert.equal(await page.locator('#entry-receipt').inputValue(),first.receipt);assert(await page.locator('#receipt-field').isVisible());}
+    if(route.startsWith('/en/contact/')){assert.equal(await page.locator('#subject').inputValue(),'entry-status');assert.equal(await page.locator('#entry-receipt').inputValue(),first.receipt);assert(await page.locator('#receipt-field').isVisible());}
     if([390,1440].includes(width)&&route==='/en/entry/')await page.screenshot({path:path.join(root,`.implementation/entry-form-${width}.png`),fullPage:true});
    }
    await ctx.close();
@@ -88,9 +88,9 @@ const body={category:'open',team:'Synthetic Team',country:'Japan',representative
    const receipt=await page.locator('#receipt-number').innerText();assert(/^SDC27-[A-F0-9]{16}$/.test(receipt));assert((await page.locator('#receipt-fee').innerText()).includes('100,000'));
    if(method==='line')await page.screenshot({path:path.join(root,'.implementation/entry-receipt-390.png'),fullPage:true});
    await page.reload();await page.waitForSelector('#receipt:not([hidden])');assert.equal(await page.locator('#receipt-number').innerText(),receipt);
-   await page.locator('#inquiry').click();assert.equal(await page.locator('#entry-receipt').inputValue(),receipt);assert.equal(await page.locator('#subject').inputValue(),'Entry Status Inquiry');
+   await page.locator('#inquiry').click();assert.equal(await page.locator('#entry-receipt').inputValue(),receipt);assert.equal(await page.locator('#subject').inputValue(),'entry-status');
    await page.locator('#entry-receipt').fill('');await page.locator('#full-name').fill('Test');await page.locator('#primary-contact').fill('test@example.invalid');await page.locator('#message').fill('Synthetic inquiry');await page.locator('#review-button').click();assert(await page.locator('#review').isVisible());assert((await page.locator('#summary').innerText()).includes('Not known'));
-   assert(await page.getByRole('button',{name:'Send message — coming soon'}).isDisabled());
+   assert(await page.locator('#send').isEnabled());
    await ctx.close();
   }
   // Missing/non-private configuration and disabled/closed reception must never show success.
@@ -99,7 +99,7 @@ const body={category:'open',team:'Synthetic Team',country:'Japan',representative
   config('2027-02-01 00:00:00',false);
   ctx=await browser.newContext();assert.equal((await (await ctx.request.get(base+'/en/entry/submit.php')).json()).open,false);await ctx.close();
   assert.deepEqual(errors,[]);
-  console.log('PASS: PHP HTTP CSRF/key/owner protection, 5 duplicate retries, changed-payload conflict, saved receipt after close, notification failure persistence, private URLs, 4 contact methods, optional fields/errors/review/edit, receipt recovery after lost response and reload, inquiry prefill/unknown number, disabled contact sending; 4 pages x 7 widths without overflow/errors. Real mail delivery not tested.');
+  console.log('PASS: PHP HTTP CSRF/key/owner protection, 5 duplicate retries, changed-payload conflict, saved receipt after close, notification failure persistence, private URLs, 4 contact methods, optional fields/errors/review/edit, receipt recovery after lost response and reload, inquiry prefill/unknown number, shared contact review; 4 pages x 7 widths without overflow/errors. Real mail delivery not tested.');
   console.log('Synthetic fixture (outside repo/public root): '+temp);
  }finally{if(browser)await browser.close();server.kill();}
 })().catch(e=>{console.error(e);console.error(stderr.slice(-2000));server.kill();process.exit(1);});
