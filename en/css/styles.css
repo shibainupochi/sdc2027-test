@@ -11,6 +11,13 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 /* October 2026 revision: scoped to the requested sections. */
+.button.entry-preview, #entry-link[aria-disabled="true"], #entry-link[aria-disabled="true"]:hover { background: #f2b7cb; color: var(--navy); }
+.button.entry-preview:hover { background: #f6cada; }
+.header nav .entry-preview { gap: 10px; text-align: center; }
+.update-content { min-width: 0; }
+.update-content p { font-size: 14px; margin-top: 12px; }
+.update-content > a:last-child { display: inline-block; margin-top: 12px; font-size: 14px; }
+.hotel-updates { margin-top: 14px; text-underline-offset: 3px; }
 .updates { background: #fff; border-bottom: 1px solid var(--line); }
 .updates-inner { display: grid; grid-template-columns: 230px 1fr; gap: 36px; padding-block: 34px; }
 .updates h2 { font-size: 22px; letter-spacing: .035em; margin: 0; padding-left: 16px; border-left: 4px solid var(--brand-pink); }

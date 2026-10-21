@@ -57,7 +57,21 @@ for (const update of list ? latest : []) {
   const title = document.createElement(update.url ? 'a' : 'span');
   title.textContent = update.title;
   if (update.url && /^(https:\/\/|#|\.?\.?\/)/.test(update.url)) title.href = update.url;
-  item.append(time, title);
+  const article = document.createElement('div');
+  article.className = 'update-content';
+  article.append(title);
+  for (const text of update.paragraphs || []) {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = text;
+    article.append(paragraph);
+  }
+  if (update.videoUrl && /^https:\/\//.test(update.videoUrl)) {
+    const video = document.createElement('a');
+    video.href = update.videoUrl;
+    video.textContent = 'Watch How to Enter on YouTube ↗';
+    article.append(video);
+  }
+  item.append(time, article);
   list.append(item);
 }
 const updatesSection = document.querySelector('.updates');

@@ -18,9 +18,11 @@ Vanilla HTML / CSS / JavaScript site, implemented against `IMPLEMENTATION_SPEC_V
 
 ### Bulletin 01
 
-The supplied PDF conflicts with V2 (optional accommodation rather than the now-required official hotel), and contains placeholder pricing, sample QR codes and old contact links. It has **not** been copied into the publicly served assets. The original remains in the supplied ZIP.
+The approved `SDC2027_Bulletin01TBA.pdf` is copied unchanged to `assets/pdf/SDC2027_Bulletin01.pdf`. `BULLETIN_READY = true` enables the download; the HTML also provides the link without JavaScript. Hotel rates remain TBA. The official hotel is optional; teams choosing it book through JTB.
 
-After the corrected PDF is approved, add it at `assets/pdf/SDC2027_Bulletin01.pdf` and set `BULLETIN_READY = true` in `en/js/config.js`. Until then, the download CTA explains that the bulletin is being updated and has no broken or misleading link.
+### October 2026 site launch
+
+The root links now lead to `/ja/` and `/en/`. This site launch does not open overseas entry: `ENTRY_URL` stays empty and server-side reception controls are unchanged. The application control shows “Entries open 1 November 2026”. The November opening switch, including entry-button wording and form submission tests, is a separate task. Confirm the date in `en/js/updates-data.js` against the actual publication date immediately before pushing; the local review uses 2026-10-22. Do not push the launch changes until the user approves publication.
 
 ### Before publication
 

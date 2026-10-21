@@ -36,7 +36,7 @@ function clearRate(){const r=spawnSync(php,['-n','-d','extension_dir='+ext,'-d',
  const errors=[];
  for(const width of [320,375,390,430,768,1024,1440]){ctx=await browser.newContext({viewport:{width,height:900}});const page=await ctx.newPage();page.on('pageerror',e=>errors.push(e.message));
   for(const route of ['/','/contact/','/ja/','/en/']){await page.goto(base+route);await page.evaluate(()=>Promise.all([...document.images].map(i=>{i.loading='eager';return i.decode().catch(()=>{});})));assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route+' '+width);assert(await page.evaluate(()=>[...document.images].every(i=>i.naturalWidth>0)));
-   if(route==='/'){assert.equal(await page.locator('.site-choice:disabled').count(),2);assert.equal(await page.locator('.launch-schedule').count(),0);assert.equal(await page.locator('.contact-link').getAttribute('href'),'contact/');}
+   if(route==='/'){assert.equal(await page.locator('a.site-choice[href="/ja/"]').count(),1);assert.equal(await page.locator('a.site-choice[href="/en/"]').count(),1);assert.equal(await page.locator('.launch-schedule').count(),0);assert.equal(await page.locator('.contact-link').getAttribute('href'),'contact/');}
    if(route==='/en/')assert.equal(await page.locator('#entry-link').getAttribute('href'),null);
    if(route==='/contact/'&&[390,1440].includes(width)){await page.waitForFunction(()=>!document.getElementById('review-button').disabled);await page.screenshot({path:path.join(root,`.implementation/contact-form-${width}.png`),fullPage:true});}
   }await ctx.close();}

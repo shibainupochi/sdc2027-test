@@ -10,11 +10,9 @@
 body { margin: 0; }
 
 .site-choices { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
-.site-choice { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; padding: 14px 18px; border: 1px solid #173c4b; border-radius: 5px; background: #173c4b; color: white; font: 600 12px/1.5 "Segoe UI", sans-serif; text-decoration: none; letter-spacing: .025em; }
-.site-choice:hover { background: #285666; }
+.site-choice { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; padding: 14px 18px; border: 1px solid #10243e; border-radius: 5px; background: #10243e; color: white; font: 600 12px/1.5 "Segoe UI", sans-serif; text-decoration: none; letter-spacing: .025em; }
+.site-choice:hover { background: #243d5b; }
 .site-choice:focus-visible { outline: 3px solid #b34d70; outline-offset: 4px; }
-.site-choice.pending { flex: 1; flex-direction: column; gap: 2px; background: #587184; border-color: #587184; color: #ffffff; opacity: 1; cursor: default; }
-.site-choice small { font-size: 10px; font-weight: 400; }
 @media (max-width: 700px) { .site-choices { flex-direction: column; max-width: 360px; margin-inline: auto; } }
 
 .teaser {
