@@ -14,7 +14,11 @@ if (query.get('subject') === 'entry-status') {
 }
 $('subject').addEventListener('change', updateInquiry);
 updateInquiry();
-if (query.has('receipt')) history.replaceState(null, '', location.pathname + (query.get('subject') === 'entry-status' ? '?subject=entry-status' : ''));
+if (query.has('receipt')) {
+  const cleanUrl = new URL(location.href);
+  cleanUrl.searchParams.delete('receipt');
+  history.replaceState(null, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+}
 const config = {
   email: {label:'Email address / メールアドレス', type:'email', placeholder:'you@example.com', hint:'We’ll reply to this address. / このアドレスへ返信します。', autocomplete:'email'},
   whatsapp: {label:'WhatsApp phone number / WhatsApp電話番号', type:'tel', placeholder:'+ country code and number / 国番号＋電話番号', hint:'Include your country code, e.g. +65 8123 4567. / 国番号を含めてください。', autocomplete:'tel'},
