@@ -1,4 +1,4 @@
-import { ENTRY_URL, BULLETIN_READY, BULLETIN_URL } from './config.js';
+import { ENTRY_URL, BULLETIN_READY, BULLETIN_URL } from './config.js?v=b70346182621';
 import { updates } from './updates-data.js';
 import { quickHelpData } from './quick-help-data.js';
 

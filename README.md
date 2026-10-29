@@ -18,7 +18,7 @@ Vanilla HTML / CSS / JavaScript site, implemented against `IMPLEMENTATION_SPEC_V
 
 ### Bulletin 01
 
-The approved `SDC2027_Bulletin01TBA.pdf` is copied unchanged to `assets/pdf/SDC2027_Bulletin01.pdf`. `BULLETIN_READY = true` enables the download; the HTML also provides the link without JavaScript. Hotel rates remain TBA. The official hotel is optional; teams choosing it book through JTB.
+The approved `SDC2027_Bulletin01Fin.pdf` is copied unchanged to `assets/pdf/SDC2027_Bulletin01.pdf`. `BULLETIN_READY = true` enables the download; the HTML also provides the link without JavaScript. The reference hotel rate is ¥34,000 per person for 3 nights. The PDF URL and its JavaScript entry/config modules use a content version query to avoid stale cached downloads. The official hotel is optional; teams choosing it book through JTB.
 
 ### October 2026 site launch
 
