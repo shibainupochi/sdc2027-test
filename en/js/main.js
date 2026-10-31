@@ -1,5 +1,5 @@
-import { ENTRY_URL, BULLETIN_READY, BULLETIN_URL } from './config.js?v=b70346182621';
-import { updates } from './updates-data.js';
+import { ENTRY_URL, BULLETIN_READY, BULLETIN_URL } from './config.js?v=20261101-entry';
+import { updates } from './updates-data.js?v=20261101-entry';
 import { quickHelpData } from './quick-help-data.js';
 
 const menu = document.querySelector('.menu-toggle');
@@ -40,7 +40,8 @@ function enableLink(id, url, statusId, status) {
   document.getElementById(statusId).textContent = status;
 }
 if (document.querySelector('#entry-link') && (/^https:\/\//.test(ENTRY_URL) || ENTRY_URL === './entry/')) {
-  enableLink('entry-link', ENTRY_URL, 'entry-status', 'Continue to the entry form.');
+  document.querySelectorAll('[data-entry-link]').forEach(link => { link.href = ENTRY_URL; });
+  enableLink('entry-link', ENTRY_URL, 'entry-status', 'Overseas team entries are now open.');
 }
 if (document.querySelector('#bulletin-link') && BULLETIN_READY) {
   enableLink('bulletin-link', BULLETIN_URL, 'bulletin-status', 'Read Bulletin 01 for the official entry conditions.');
@@ -64,6 +65,12 @@ for (const update of list ? latest : []) {
     const paragraph = document.createElement('p');
     paragraph.textContent = text;
     article.append(paragraph);
+  }
+  if (update.entryUrl === './entry/') {
+    const entry = document.createElement('a');
+    entry.href = update.entryUrl;
+    entry.textContent = 'Enter your team →';
+    article.append(entry);
   }
   if (update.videoUrl && /^https:\/\//.test(update.videoUrl)) {
     const video = document.createElement('a');

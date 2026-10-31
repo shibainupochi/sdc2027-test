@@ -10,7 +10,7 @@ Vanilla HTML / CSS / JavaScript site, implemented against `IMPLEMENTATION_SPEC_V
 
 ## Content and release controls
 
-- `en/js/config.js`: the external entry URL is set in **one place**, `ENTRY_URL`. Leave empty until the approved HTTPS form URL is available.
+- `en/js/config.js`: the entry URL is set in **one place**, `ENTRY_URL` (`./entry/` from 1 November 2026).
 - `en/js/updates-data.js`: approved news array. The latest three items are sorted by ISO date; an empty array hides the news strip.
 - `en/js/quick-help-data.js`: all 10 categories and 43 fixed answers from the V2 specification. No AI, free-text input or API.
 - Original image files are preserved alongside optimized WebP copies used by the English site.
@@ -20,7 +20,11 @@ Vanilla HTML / CSS / JavaScript site, implemented against `IMPLEMENTATION_SPEC_V
 
 The approved `SDC2027_Bulletin01Fin.pdf` is copied unchanged to `assets/pdf/SDC2027_Bulletin01.pdf`. `BULLETIN_READY = true` enables the download; the HTML also provides the link without JavaScript. The reference hotel rate is ¥34,000 per person for 3 nights. The PDF URL and its JavaScript entry/config modules use a content version query to avoid stale cached downloads. The official hotel is optional; teams choosing it book through JTB.
 
-### October 2026 site launch
+### November 2026 overseas entry opening
+
+The overseas entry buttons and news now link directly to `./entry/`. The deployment performs a one-time, backed-up activation of the existing private configuration. See `ENTRY_SETUP.md` for verification and private backup details. Domestic entries still open in January 2027.
+
+### October 2026 site launch (historical)
 
 The root links now lead to `/ja/` and `/en/`. This site launch does not open overseas entry: `ENTRY_URL` stays empty and server-side reception controls are unchanged. The application control shows “Entries open 1 November 2026”. The November opening switch, including entry-button wording and form submission tests, is a separate task. Confirm the date in `en/js/updates-data.js` against the actual publication date immediately before pushing; the local review uses 2026-10-22. Do not push the launch changes until the user approves publication.
 
