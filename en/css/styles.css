@@ -14,15 +14,12 @@
 .button.entry-preview, #entry-link[aria-disabled="true"], #entry-link[aria-disabled="true"]:hover { background: #f2b7cb; color: var(--navy); }
 .button.entry-preview:hover { background: #f6cada; }
 .header nav .entry-preview { gap: 10px; text-align: center; }
-.update-content { min-width: 0; }
-.update-content p { font-size: 14px; margin-top: 12px; }
-.update-content > a:last-child { display: inline-block; margin-top: 12px; font-size: 14px; }
 .hotel-updates { margin-top: 14px; text-underline-offset: 3px; }
 .updates { background: #fff; border-bottom: 1px solid var(--line); }
-.updates-inner { display: grid; grid-template-columns: 230px 1fr; gap: 36px; padding-block: 34px; }
+.updates-inner { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 24px; padding-block: 18px; }
 .updates h2 { font-size: 22px; letter-spacing: .035em; margin: 0; padding-left: 16px; border-left: 4px solid var(--brand-pink); }
 .updates ul { display: grid; gap: 0; }
-.updates li { display: grid; grid-template-columns: 105px 1fr; gap: 20px; padding: 15px 0; font-size: 16px; }
+.updates li { display: grid; grid-template-columns: 95px minmax(0, 1fr); gap: 16px; padding: 9px 0; font-size: 15px; line-height: 1.5; }
 .updates li + li { border-top: 1px solid var(--line); margin: 0; }
 .updates time { font-size: 13px; margin: 0; padding-top: 3px; }
 .updates li a { text-underline-offset: 4px; }
@@ -89,11 +86,11 @@ a.video-button:hover { text-decoration: underline; text-underline-offset: 3px; }
 @media(max-width:760px) {
   .header nav .desktop-only { display: none; }
   .header nav .mobile-only { display: flex; }
-  .updates-inner { grid-template-columns: 1fr; gap: 14px; padding-block: 30px; }
-  .updates h2 { font-size: 21px; }
-  .updates li { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+  .updates-inner { grid-template-columns: 1fr; gap: 8px; padding-block: 16px; }
+  .updates h2 { font-size: 18px; }
+  .updates li { grid-template-columns: 82px minmax(0, 1fr); gap: 10px; padding: 8px 0; font-size: 14px; }
   .updates li + li { margin: 0; }
-  .updates time { padding: 0; }
+  .updates time { padding: 1px 0 0; font-size: 12px; white-space: nowrap; }
   .video-button { width: 100%; padding: 14px; font-size: 11px; gap: 12px; }
   .osaka-evenings { max-width: 270px; font-size: 14px; }
   .osaka .video-cta { margin-top: 20px; }

@@ -1,5 +1,5 @@
 import { ENTRY_URL, BULLETIN_READY, BULLETIN_URL } from './config.js?v=20261101-entry';
-import { updates } from './updates-data.js?v=20261101-entry';
+import { updates } from './updates-data.js?v=20261101-compact';
 import { quickHelpData } from './quick-help-data.js';
 
 const menu = document.querySelector('.menu-toggle');
@@ -58,27 +58,7 @@ for (const update of list ? latest : []) {
   const title = document.createElement(update.url ? 'a' : 'span');
   title.textContent = update.title;
   if (update.url && /^(https:\/\/|#|\.?\.?\/)/.test(update.url)) title.href = update.url;
-  const article = document.createElement('div');
-  article.className = 'update-content';
-  article.append(title);
-  for (const text of update.paragraphs || []) {
-    const paragraph = document.createElement('p');
-    paragraph.textContent = text;
-    article.append(paragraph);
-  }
-  if (update.entryUrl === './entry/') {
-    const entry = document.createElement('a');
-    entry.href = update.entryUrl;
-    entry.textContent = 'Enter your team →';
-    article.append(entry);
-  }
-  if (update.videoUrl && /^https:\/\//.test(update.videoUrl)) {
-    const video = document.createElement('a');
-    video.href = update.videoUrl;
-    video.textContent = 'Watch How to Enter on YouTube ↗';
-    article.append(video);
-  }
-  item.append(time, article);
+  item.append(time, title);
   list.append(item);
 }
 const updatesSection = document.querySelector('.updates');
