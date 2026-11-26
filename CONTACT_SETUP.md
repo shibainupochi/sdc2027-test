@@ -5,11 +5,11 @@
 - トップにメールアイコン＋CONTACT / お問い合わせ。国内・海外の既存リンクも共通フォームへ変更。
 - `エントリー受付の確認` と任意の受付番号。既存の海外フォームURLは共通フォームへ誘導し、受付番号の引継ぎにも対応。
 - 返信先はE-mail、WhatsApp、FB Messenger、予備連絡先は任意。メールアドレスを必須にはしない。
-- 保存後、事務局 `osaka@sakuradragoncup.jp` へ通知。参加者への自動返信は実装しない。
+- 保存後、事務局 `sdc_osaka@transcendent.fun` へ通知。参加者への自動返信は実装しない。
 
 ## さくらの既存設定を使用
 `/home/shibainupochi/private-sdc-entry/config.php` の既存 `storage_dir`、`notification_sender` を使用。
-送信者 `sdc_osaka@transcendent.fun`、宛先 `osaka@sakuradragoncup.jp`。
+送信者は`sdc_osaka@transcendent.fun`。宛先は`notification_recipient`で設定し、現在は`sdc_osaka@transcendent.fun`。既存の本番configに`notification_recipient`がない場合は`notification_sender`へ送るため、configを変更せず稼働できる。
 `enabled => false` はエントリー専用で変更不要。問い合わせは11月1日を待たず受け付ける。
 問い合わせを停止する場合だけ、私有設定に `contact_enabled => false` を追加する。
 DBは同じ私有ディレクトリの `contacts.sqlite` に自動作成。既存 `entries.sqlite` と受付日・料金判定は変更しない。

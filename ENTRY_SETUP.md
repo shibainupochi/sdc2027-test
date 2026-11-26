@@ -6,7 +6,7 @@
 
 - 公開workflowは既存SSH接続で tools/open-overseas-entry.php を標準入力から実行する。公開領域には管理スクリプトを配置しない。
 - 非公開configの enabled だけをtrueへ変更する。元ファイルは同じ非公開ディレクトリの config.php.before-20261101-opening へ権限600で保存。このバックアップが存在すれば再変更しない。後日の管理者による受付停止を尊重する。
-- 保存先、通知送信元、期間判定は既存設定を維持。期間は2026年11月1日00:00以上、2027年3月1日00:00未満（JST）。
+- 保存先、通知送信元、通知先、期間判定は既存設定を維持。通知先は`notification_recipient`、未設定なら`notification_sender`を使用する。期間は2026年11月1日00:00以上、2027年3月1日00:00未満（JST）。
 - 英語3か所のCTAと最新お知らせから ./entry/ へ移動。国内募集は2027年1月のまま。
 - Actionsの Deploy to Sakura Internet を手動実行するとき、test_receipt にTEST申込の受付番号を指定すれば、同じ番号のDB保存・日時・料金・通知引渡し状態だけをログで照合できる。申込者情報は出力しない。
 - notified=1 はメールサーバーへの引渡しであり、受信確認ではない。事務局受信箱で同番号のメール到着を別途確認する。
@@ -60,7 +60,8 @@ chmod 700 /home/shibainupochi/private-sdc-entry
 return [
     'enabled' => false,
     'storage_dir' => '/home/shibainupochi/private-sdc-entry',
-    'notification_sender' => '', // さくらから送信を許可された実在アドレスを設定
+    'notification_sender' => 'sdc_osaka@transcendent.fun', // さくらから送信を許可された実在アドレス
+    'notification_recipient' => 'sdc_osaka@transcendent.fun',
 ];
 ```
 
@@ -74,7 +75,7 @@ APIは`SDC_ENTRY_CONFIG`環境変数の絶対パスを優先する。未指定�
 
 ### 3. 通知送信元を設定して到着を検証
 
-通知先は`osaka@sakuradragoncup.jp`で固定。`notification_sender`には、さくらからの送信を許可され、認証設定を確認した送信元を設定する。Workspaceのアドレスを根拠なくFromへ指定しない。この実装はPHP `mail()`を使用し、SMTP/OAuthは実装していない。
+エントリーと問い合わせの通知先は`notification_recipient`へ設定する。現在の通知先は`sdc_osaka@transcendent.fun`。既存の本番configに`notification_recipient`がない場合は、有効な`notification_sender`へ送るため、現在の`notification_sender`が`sdc_osaka@transcendent.fun`の本番configは変更せず稼働できる。`notification_sender`には、さくらからの送信を許可され、認証設定を確認した送信元を設定する。Workspaceのアドレスを根拠なくFromへ指定しない。この実装はPHP `mail()`を使用し、SMTP/OAuthは実装していない。
 
 さくらのsendmail環境、差出人ドメインのSPF/DKIM等、受信側の迷惑メール判定を確認する。DNS設定変更は今回未実施。**`mail()`のtrueは送信サーバーへの引渡しで、受信箱への到着を保証しない。**テスト申込1件で実際の受信箱と迷惑メールフォルダーを確認し、受付番号・申込内容・日本時間・料金を照合する。
 

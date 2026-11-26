@@ -16,12 +16,17 @@ try {
     check(contact_find($db,$key,'other')===null,'owner isolation');
     fails(fn()=>contact_save($db,$key,$owner,$ip,array_replace($clean,['message'=>'changed']),1002));
     fails(fn()=>contact_save($db,str_repeat('b',48),$owner,$ip,$clean,1002));
-    check(!contact_notify($db,$first['row'],['notification_sender'=>'internal@example.com'],fn()=>false),'transport failure');
+    $cfg=['notification_sender'=>'internal@example.com','notification_recipient'=>'sdc_osaka@transcendent.fun'];
+    check(!contact_notify($db,$first['row'],$cfg,fn()=>false),'transport failure');
+    check(!contact_notify($db,$first['row'],['notification_sender'=>'sdc_osaka@transcendent.fun','notification_recipient'=>'invalid'],fn()=>true),'invalid configured recipient');
     check((int)$db->query('SELECT COUNT(*) FROM contacts')->fetchColumn()===1,'preserved after failure');
     $captured=null;
-    check(contact_notify($db,$first['row'],['notification_sender'=>'internal@example.com'],function($to,$subject,$body,$headers)use(&$captured){$captured=[$to,$headers,$body];return true;}),'transport success');
-    check($captured[0]==='osaka@sakuradragoncup.jp' && $captured[1]['From']==='internal@example.com' && $captured[1]['Reply-To']==='test@example.com','fixed routing');
+    check(contact_notify($db,$first['row'],$cfg,function($to,$subject,$body,$headers)use(&$captured){$captured=[$to,$headers,$body];return true;}),'transport success');
+    check($captured[0]==='sdc_osaka@transcendent.fun' && $captured[1]['From']==='internal@example.com' && $captured[1]['Reply-To']==='test@example.com','configured routing');
+    check(contact_notify($db,$first['row'],['notification_sender'=>'sdc_osaka@transcendent.fun'],function($to,$subject,$body,$headers){
+        check($to==='sdc_osaka@transcendent.fun' && $headers['From']==='sdc_osaka@transcendent.fun','sender fallback routing');return true;
+    }),'fallback transport success');
     $r=$db->query('SELECT notified,notification_attempts FROM contacts')->fetch(PDO::FETCH_ASSOC);
-    check((int)$r['notified']===1 && (int)$r['notification_attempts']===2,'retry status');
+    check((int)$r['notified']===1 && (int)$r['notification_attempts']===4,'retry status');
     echo "Contact validation, durable save, idempotency, rate limit and notification tests passed.\n";
 } finally { $db=null; foreach(glob($dir.'/*') as $file) unlink($file); rmdir($dir); }

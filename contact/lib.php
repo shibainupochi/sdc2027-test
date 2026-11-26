@@ -70,7 +70,9 @@ function contact_notify(PDO $db,array $row,array $cfg,?callable $transport=null)
     $ok = false;
     try {
         $sender = $cfg['notification_sender'] ?? '';
-        if (is_string($sender) && filter_var($sender,FILTER_VALIDATE_EMAIL) && !preg_match('/[\r\n]/',$sender)) {
+        $recipient = $cfg['notification_recipient'] ?? $sender;
+        if (is_string($sender) && filter_var($sender,FILTER_VALIDATE_EMAIL) && !preg_match('/[\r\n]/',$sender)
+            && is_string($recipient) && filter_var($recipient,FILTER_VALIDATE_EMAIL) && !preg_match('/[\r\n]/',$recipient)) {
             $d = json_decode($row['payload'],true,512,JSON_THROW_ON_ERROR);
             $body = 'Reference / お問い合わせ番号: '.$row['reference']."\nReceived (JST): ".(new DateTimeImmutable('@'.$row['created']))->setTimezone(new DateTimeZone('Asia/Tokyo'))->format('Y-m-d H:i:s')."\n\n";
             $labels = ['subject'=>'Topic / 件名','name'=>'Name / 氏名','method'=>'Reply method / 返信方法','contact'=>'Contact / 連絡先','backup_method'=>'Backup method / 予備返信方法','backup_contact'=>'Backup contact / 予備連絡先','receipt'=>'Entry receipt / エントリー受付番号','message'=>'Message / 内容'];
@@ -78,7 +80,7 @@ function contact_notify(PDO $db,array $row,array $cfg,?callable $transport=null)
             $headers = ['From'=>$sender,'MIME-Version'=>'1.0','Content-Type'=>'text/plain; charset=UTF-8'];
             if ($d['method'] === 'email') $headers['Reply-To'] = $d['contact'];
             $transport ??= fn($to,$subject,$body,$headers)=>mail($to,$subject,$body,$headers);
-            $ok = (bool)$transport('osaka@sakuradragoncup.jp','SDC2027 contact '.$row['reference'],$body,$headers);
+            $ok = (bool)$transport($recipient,'SDC2027 contact '.$row['reference'],$body,$headers);
         }
     } catch (Throwable $e) { error_log('SDC contact notification failed: '.$row['reference']); }
     try {

@@ -46,14 +46,18 @@ check(!$closedRetry['created'],'retry after close');
 check(entry_find($db,$key,hash('sha256','another-owner'))===null,'no cross-session receipt access');
 fails(fn()=>entry_save($db,$key,$owner,array_replace($clean,['team'=>'Changed']),$now('2027-01-31')),'same key changed payload');
 fails(fn()=>entry_save($db,str_repeat('b',48),$owner,$clean,$now('2027-03-01')),'closed new entry');
-$cfg=['notification_sender'=>'test@example.invalid'];
+$cfg=['notification_sender'=>'test@example.invalid','notification_recipient'=>'sdc_osaka@transcendent.fun'];
 check(!entry_notify($db,$first['row'],$cfg,fn()=>false),'mail rejection');
 check(!entry_notify($db,$first['row'],$cfg,function(){throw new RuntimeException('mail failure');}),'mail exception');
+check(!entry_notify($db,$first['row'],['notification_sender'=>'sdc_osaka@transcendent.fun','notification_recipient'=>'invalid'],fn()=>true),'invalid configured recipient');
 check((int)$db->query('SELECT COUNT(*) FROM entries')->fetchColumn()===1,'data survives failed mail');
 check((int)$db->query('SELECT notified FROM entries')->fetchColumn()===0,'failed-mail flag');
 check(entry_notify($db,$first['row'],$cfg,function($to,$subject,$body,$headers){
-    check($to==='osaka@sakuradragoncup.jp','notification recipient');check(str_contains($body,'Synthetic test team'),'notification body');return true;
+    check($to==='sdc_osaka@transcendent.fun','configured notification recipient');check(str_contains($body,'Synthetic test team'),'notification body');return true;
 }),'accepted mail');
+check(entry_notify($db,$first['row'],['notification_sender'=>'sdc_osaka@transcendent.fun'],function($to,$subject,$body,$headers){
+    check($to==='sdc_osaka@transcendent.fun' && $headers['From']==='sdc_osaka@transcendent.fun','sender fallback recipient');return true;
+}),'accepted fallback mail');
 check((int)$db->query('SELECT notified FROM entries')->fetchColumn()===1,'accepted flag');
 $second=entry_save($db,str_repeat('c',48),$owner,array_replace($clean,['team'=>'  =SUM(1,2)','contact'=>'+6581234567']),$now('2027-02-01'));
 check((int)$second['row']['fee']===100000,'regular save');

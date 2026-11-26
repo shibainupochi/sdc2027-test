@@ -3,6 +3,8 @@
 return [
     'enabled' => false,
     'storage_dir' => '/home/YOUR_ACCOUNT/private-sdc-entry',
-    // A verified sender authorized on Sakura. Destination is fixed in code.
+    // A verified sender authorized on Sakura.
     'notification_sender' => '',
+    // If omitted, notifications are sent to notification_sender for backward compatibility.
+    'notification_recipient' => 'sdc_osaka@transcendent.fun',
 ];

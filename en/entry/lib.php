@@ -136,10 +136,12 @@ function entry_notify(PDO $db, array $row, array $cfg, ?callable $transport = nu
     $accepted = false;
     try {
         $sender = $cfg['notification_sender'] ?? '';
-        if (is_string($sender) && filter_var($sender, FILTER_VALIDATE_EMAIL) && !preg_match('/[\r\n]/', $sender)) {
+        $recipient = $cfg['notification_recipient'] ?? $sender;
+        if (is_string($sender) && filter_var($sender, FILTER_VALIDATE_EMAIL) && !preg_match('/[\r\n]/', $sender)
+            && is_string($recipient) && filter_var($recipient, FILTER_VALIDATE_EMAIL) && !preg_match('/[\r\n]/', $recipient)) {
             $body = 'Receipt: '.$row['receipt']."\nSubmitted (JST): ".$row['submitted']."\nFee: JPY ".$row['fee']."\n\n".$row['payload'];
             $transport ??= fn($to,$subject,$body,$headers) => mail($to,$subject,$body,$headers);
-            $accepted = (bool)$transport('osaka@sakuradragoncup.jp','SDC2027 entry '.$row['receipt'],$body,
+            $accepted = (bool)$transport($recipient,'SDC2027 entry '.$row['receipt'],$body,
                 ['From'=>$sender,'MIME-Version'=>'1.0','Content-Type'=>'text/plain; charset=UTF-8']);
         }
     } catch (Throwable $e) { error_log('SDC notification failed for '.$row['receipt']); }
